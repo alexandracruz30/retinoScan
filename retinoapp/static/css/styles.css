@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    background: #0f4c81;
+    color: white;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.btn-acceder {
+    background-color: #7bc6a4;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-left: 20px;         
+    white-space: nowrap;
+}
+
+.btn-acceder:hover {
+    background-color: #62a98d;
+}
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(15, 76, 129, 0.6), rgba(15, 76, 129, 0.6)), url('../images/hero-retina.jpg') center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding-top: 80px;
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.btn-cta {
+    background-color: transparent;
+    border: 2px solid white;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-cta:hover {
+    background-color: #ffffff33;
+}
+
+footer {
+    background-color: #0f4c81;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.info-section {
+    padding: 80px 20px;
+    background-color: white;
+    text-align: center;
+}
+
+.info-section .container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.info-section h2 {
+    font-size: 2rem;
+    color: #0f4c81;
+    margin-bottom: 20px;
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 20px;
+    }
+
+    .nav-actions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .btn-acceder {
+        width: 100%;
+        text-align: center;
+    }
+}

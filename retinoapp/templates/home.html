@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Diagnóstico con IA</h1>
+        <p>Detección temprana de retinopatía diabética mediante Inteligencia Artificial.</p>
+        <a href="{% url 'login' %}" class="btn-cta">Comenzar Diagnóstico</a>
+    </div>
+</section>
+<section class="info-section">
+    <div class="container">
+        <h2>¿Cómo funciona?</h2>
+        <p>Sube una imagen de tu retina y nuestro sistema entrenado con deep learning te indicará el grado de retinopatía.</p>
+    </div>
+</section>
+{% endblock %}

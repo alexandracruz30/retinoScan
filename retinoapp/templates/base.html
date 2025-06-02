@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RetinoScan{% endblock %}</title>
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    
+    <!-- Favicon (opcional) -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+    <!-- JS opcional -->
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <!-- HEADER: barra de navegación -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="{% static 'images/logo.png' %}" alt="Logo">
+                <span>Visium</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Inicio</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+            <a href="{% url 'login' %}" class="btn-acceder">Acceder</a>
+        </nav>
+    </header>
+
+    <!-- MAIN: contenido dinámico de cada página -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- FOOTER: común para todas las páginas -->
+    <footer>
+        <p>&copy; 2025 RetinoScan | Sistema de diagnóstico por IA</p>
+    </footer>
+</body>
+</html>
