@@ -1,11 +1,30 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Iniciar sesión{% endblock %}
 
 {% block content %}
-<h1>Login</h1>
-<form method="post">
-    {% csrf_token %}
-    <!-- Tu formulario aquí -->
-</form>
+<div class="login-container">
+    <div class="login-left">
+        <img src="{% static 'images/ofttal1.jpg' %}" alt="Doctor" class="login-image">
+        <div class="welcome-text">
+            <h2>Bienvenido a <strong>RetinoScan</strong></h2>
+            <p>Sistema de detección de retinopatía con inteligencia artificial</p>
+        </div>
+    </div>
+    <div class="login-right">
+        <h2 class="login-title">Iniciar sesión</h2>
+        <p>Ingresa tus credenciales para acceder a tu cuenta</p>
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            <button type="submit" class="login-btn">Iniciar sesión</button>
+        </form>
+        <p class="register-text">¿No tienes cuenta? <a href="#">Regístrate</a></p>
+    </div>
+</div>
 {% endblock %}

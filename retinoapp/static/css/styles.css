@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
@@ -139,7 +146,7 @@ footer {
     .navbar {
         flex-direction: column;
         align-items: flex-start;
-        padding: 10px 20px;
+        padding: 10px 10px; /* Cambia de 10px 20px a 10px 10px */
     }
 
     .nav-actions {
@@ -159,4 +166,95 @@ footer {
         width: 100%;
         text-align: center;
     }
+}
+
+/* Estilos del login */
+.login-container {
+    display: flex;
+    height: 100vh;
+    margin-top: 0;
+}
+
+.login-left {
+    flex: 1;
+    background-color: #0f4c81;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+.login-left .login-image {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.welcome-text h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.welcome-text p {
+    font-size: 1rem;
+}
+
+.login-right {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 40px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.05);
+}
+
+.login-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    color: #0f4c81;
+}
+
+.login-right form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-right input[type="email"],
+.login-right input[type="password"] {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.login-btn {
+    background-color: #0f4c81;
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background-color: #0d3c66;
+}
+
+.forgot-password {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #0f4c81;
+    text-decoration: none;
+}
+
+.register-text {
+    margin-top: 20px;
+    font-size: 0.9rem;
 }
