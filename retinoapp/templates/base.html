@@ -9,9 +9,6 @@
     <!-- Estilos -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     
-    <!-- Favicon (opcional) -->
-    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
-
     <!-- JS opcional -->
     <script src="{% static 'js/main.js' %}" defer></script>
 </head>
@@ -28,7 +25,10 @@
                 <li><a href="#">Servicios</a></li>
                 <li><a href="#">Contacto</a></li>
             </ul>
-            <a href="{% url 'login' %}" class="btn-acceder">Acceder</a>
+            <div class="nav-actions">
+                <a href="{% url 'login' %}" class="btn-acceder">Acceder</a>
+                <a href="{% url 'register' %}" class="btn-acceder">Registrarse</a>
+            </div>
         </nav>
     </header>
 

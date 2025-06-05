@@ -168,6 +168,7 @@ footer {
     }
 }
 
+
 /* Estilos del login */
 .login-container {
     display: flex;
@@ -258,3 +259,5 @@ footer {
     margin-top: 20px;
     font-size: 0.9rem;
 }
+
+/* Estilos del registro */
