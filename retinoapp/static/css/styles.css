@@ -226,11 +226,15 @@ footer {
 }
 
 .login-right input[type="email"],
-.login-right input[type="password"] {
+.login-right input[type="password"],
+.login-right input[type="text"],
+.login-right input[type="username"] {
     padding: 12px 15px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .login-btn {
@@ -261,3 +265,78 @@ footer {
 }
 
 /* Estilos del registro */
+.register-container {
+    display: flex;
+    height: 100vh;
+}
+
+.register-left {
+    flex: 1;
+    background-color: #f1f1f1;
+}
+
+.register-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.register-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fefefe;
+}
+
+.register-card {
+    width: 80%;
+    max-width: 400px;
+    padding: 40px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.register-title {
+    font-size: 28px;
+    color: #009688;
+    margin-bottom: 20px;
+}
+
+.register-card input {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+}
+
+.register-btn {
+    background-color: #009688;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+    background-color: #00796b;
+}
+
+.login-text {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.login-text a {
+    color: #009688;
+    text-decoration: none;
+    font-weight: bold;
+}

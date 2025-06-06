@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+from django.contrib import messages
 
 # Create your views here.
 def login_view(request):
@@ -19,6 +22,27 @@ def login_view(request):
         else:
             return render(request, 'login.html', {'error': 'Credenciales incorrectas'})
     return render(request, 'login.html')
+#para registrar un usuario
+def register_view(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        password2 = request.POST.get('password2')
+
+        if password != password2:
+            return render(request, 'register.html', {'error': 'Las contraseñas no coinciden'})
+
+        if User.objects.filter(username=username).exists():
+            return render(request, 'register.html', {'error': 'El nombre de usuario ya existe'})
+
+        if User.objects.filter(email=email).exists():
+            return render(request, 'register.html', {'error': 'El correo ya está registrado'})
+
+        user = User.objects.create_user(username=username, email=email, password=password)
+        return redirect('login')
+
+    return render(request, 'register.html')
 
 def dashboard_view(request):
     return render(request, 'dashboard.html')

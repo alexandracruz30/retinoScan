@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="login-container">
+    <div class="login-left">
+        <img src="{% static 'images/registro.jpg' %}" alt="Doctor registrando" class="login-image">
+        <div class="welcome-text">
+            <h2>¡Crea tu cuenta en <strong>RetinoScan</strong>!</h2>
+            <p>Regístrate para acceder al sistema de detección de retinopatía con IA.</p>
+        </div>
+    </div>
+    <div class="login-right">
+        <h2 class="login-title">Registrarse</h2>
+        <p>Crea tu cuenta para comenzar</p>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Nombre de usuario" required>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <input type="password" name="password2" placeholder="Confirmar contraseña" required>
+            <button type="submit" class="login-btn">Crear cuenta</button>
+        </form>
+        <p class="register-text">¿Ya tienes cuenta? <a href="{% url 'login' %}">Inicia sesión</a></p>
+    </div>
+</div>
+{% endblock %}
