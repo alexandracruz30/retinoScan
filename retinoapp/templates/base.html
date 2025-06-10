@@ -8,6 +8,8 @@
 
     <!-- Estilos -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Estilos de React -->
+    <link rel="stylesheet" href="{% static 'css/main.f855e6bc.css' %}">
     <!-- Favicon (opcional) -->
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <!-- JS opcional -->
@@ -36,11 +38,15 @@
     <!-- MAIN: contenido dinámico de cada página -->
     <main>
         {% block content %}{% endblock %}
+        <!-- Div para React -->
+        <div id="react-root"></div>
     </main>
 
     <!-- FOOTER: común para todas las páginas -->
     <footer>
         <p>&copy; 2025 RetinoScan | Sistema de diagnóstico por IA</p>
     </footer>
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/main.a5877ba8.js' %}" defer></script>
 </body>
 </html>

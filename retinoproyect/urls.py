@@ -22,8 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', views.login_view, name='login'),
     path('register/', views.register_view, name='register'),  # <-- Agrega esta línea
-    path('', views.dashboard_view, name='dashboard'),
-    path('home/', views.home_view, name='home'),
+    path('', views.home_view, name='home'),
 ]
 
 
