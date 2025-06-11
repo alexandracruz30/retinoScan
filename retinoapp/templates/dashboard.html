@@ -1,9 +1,28 @@
-<!-- filepath: retinoapp/templates/dasboard.html -->
 {% extends 'base.html' %}
-
-{% block title %}Inicio{% endblock %}
+{% load static %}
 
 {% block content %}
-<h1>Bienvenido al sistema de Retinopatía</h1>
-<p>Esta es la página principal.</p>
+    <div class="cards-container">
+        <!-- Registrar Paciente -->
+        <div class="card-service">
+            <div class="card-img">
+                <img src="{% static 'images/ofttal1.jpg' %}" alt="Registrar Paciente">
+            </div>
+            <div class="card-title">Registrar Paciente</div>
+            <div class="card-desc">Nuevo ingreso de paciente para iniciar seguimiento.</div>
+            <a href="{% url 'patient_register' %}" class="btn-service">Registrar</a>
+        </div>
+
+        <!-- Historial de Pacientes -->
+        <div class="card-service">
+            <div class="card-img">
+                <img src="{% static 'images/ofttal1.jpg' %}" alt="Historial Pacientes">
+            </div>
+            <div class="card-title">Historial de Pacientes</div>
+            <div class="card-desc">Consulta los pacientes registrados y sus controles anteriores.</div>
+            <a href="{% url 'patient_history' %}" class="btn-service">Historial</a>
+        </div>
+    </div>
+</div>
 {% endblock %}
+

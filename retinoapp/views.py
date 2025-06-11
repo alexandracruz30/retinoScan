@@ -40,7 +40,9 @@ def register_view(request):
             return render(request, 'register.html', {'error': 'El correo ya está registrado'})
 
         user = User.objects.create_user(username=username, email=email, password=password)
-        return redirect('login')
+        user.save()
+        login(request, user)  # Opcional: loguea automáticamente tras registro
+        return redirect('dashboard')
 
     return render(request, 'register.html')
 
@@ -49,3 +51,9 @@ def dashboard_view(request):
 
 def home_view(request):
     return render(request, 'home.html')
+
+def patient_register_view(request):
+    return render(request, 'patient_register.html')
+
+def patient_history_view(request):
+    return render(request, 'patient_history.html')
