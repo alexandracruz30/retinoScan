@@ -26,6 +26,7 @@ urlpatterns = [
     path('patient_register/', views.patient_register_view, name='patient_register'),
     path('patient_history/', views.patient_history_view, name='patient_history'),
     path('', views.home_view, name='home'),
+    
 ]
 
 

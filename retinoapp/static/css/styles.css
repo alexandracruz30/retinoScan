@@ -359,28 +359,29 @@ footer {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
+    padding: 40px 20px;
 }
 
 .card-service {
     background: #fff;
     border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 300px;
-    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    width: 540px;
+    padding: 60px 30px;
     text-align: center;
     transition: transform 0.2s ease-in-out;
 }
 
 .card-service:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
 }
 
 .card-title {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     color: #0f4c81;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .card-time {
@@ -390,29 +391,60 @@ footer {
 }
 
 .card-img img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .card-desc {
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #555;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .btn-service {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 10px 20px;
     background: #0f4c81;
     color: #fff;
-    border-radius: 6px;
+    border-radius: 8px;
     text-decoration: none;
     transition: background 0.3s ease;
+    font-size: 1rem;
 }
 
 .btn-service:hover {
     background: #0c3a63;
+}
+/* Estilos para ajustal algo que hice, no se me lo dio copilot */
+/* Asegura que el body y html ocupen toda la altura */
+/* y que el footer se mantenga al final de la página */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout principal para sticky footer */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* El main ocupa el espacio disponible */
+main {
+    flex: 1 0 auto;
+}
+
+/* Footer fijo abajo */
+footer {
+    flex-shrink: 0;
+    background-color: #0f4c81;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 0;
 }

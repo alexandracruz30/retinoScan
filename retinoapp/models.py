@@ -4,11 +4,13 @@ from django.db import models
 #Tabla para los datos del paciente
 class Paciente(models.Model):
     nombre = models.CharField(max_length=100)
+    apellido = models.CharField(max_length=100)
+    cedula = models.CharField(max_length=20, unique=True)
     fecha_nacimiento = models.DateField()
-    email = models.EmailField(unique=True)
+    email = models.EmailField(unique=True, null=True, blank=True)  # Opcional si quieres
 
     def __str__(self):
-        return self.nombre
+        return f"{self.nombre} {self.apellido}"
 #Tabla para las imagenes de retina
 class ImagenRetina(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='imagenes')

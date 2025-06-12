@@ -1,0 +1,58 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 16px;
+    width: 540px;
+    padding: 60px 30px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+}
+
+h2 {
+    color: #0f4c81;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.btn {
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Layout principal para sticky footer */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* El main ocupa el espacio disponible */
+main {
+    flex: 1 0 auto;
+}
+
+/* Footer fijo abajo */
+footer {
+    flex-shrink: 0;
+    background-color: #0f4c81;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 0;
+}

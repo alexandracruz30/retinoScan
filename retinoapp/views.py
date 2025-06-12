@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 from django.contrib import messages
-
+from .models import Paciente
 # Create your views here.
 def login_view(request):
     if request.method == 'POST':
@@ -53,6 +53,19 @@ def home_view(request):
     return render(request, 'home.html')
 
 def patient_register_view(request):
+    if request.method == 'POST':
+        nombre = request.POST.get('nombre')
+        apellido = request.POST.get('apellido')
+        cedula = request.POST.get('cedula')
+        fecha_nacimiento = request.POST.get('fecha_nacimiento')
+
+        paciente = Paciente.objects.create(
+            nombre=nombre,
+            apellido=apellido,
+            cedula=cedula,
+            fecha_nacimiento=fecha_nacimiento
+        )
+        return redirect('patient_detail', patient_id=paciente.id)
     return render(request, 'patient_register.html')
 
 def patient_history_view(request):

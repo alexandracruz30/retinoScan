@@ -12,6 +12,7 @@
     <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
     <!-- JS opcional -->
     <script src="{% static 'js/main.js' %}" defer></script>
+    {% block extra_css %}{% endblock %}
 </head>
 <body>
     <!-- HEADER: barra de navegación -->
