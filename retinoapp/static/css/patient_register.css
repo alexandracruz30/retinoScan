@@ -1,58 +1,62 @@
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 16px;
-    width: 540px;
-    padding: 60px 30px;
-    text-align: center;
-    transition: transform 0.2s ease-in-out;
+/* Fondo con imagen (puedes cambiar el archivo según lo que subas en static/images) */
+.register-background {
+    background: url("{% static 'images/bg-hospital.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 80px; /* espacio para el header */
 }
 
-h2 {
+/* Card transparente */
+.register-container {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 40px 50px;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+}
+
+/* Título */
+.title {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 32px;
     color: #0f4c81;
 }
 
+/* Inputs */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 label {
-    font-weight: bold;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
 }
 
-.btn {
-    padding: 10px 30px;
-    font-size: 16px;
+.form-control {
+    width: 100%;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
 }
 
-
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* Layout principal para sticky footer */
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-/* El main ocupa el espacio disponible */
-main {
-    flex: 1 0 auto;
-}
-
-/* Footer fijo abajo */
-footer {
-    flex-shrink: 0;
-    background-color: #0f4c81;
+/* Botón */
+.btn-register {
+    background: #0f4c81;
     color: white;
-    text-align: center;
-    padding: 20px;
-    margin-top: 0;
+    padding: 12px 30px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.btn-register:hover {
+    background: #09385d;
 }
