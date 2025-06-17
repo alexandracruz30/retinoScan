@@ -1,0 +1,141 @@
+.patient-detail-container {
+    max-width: 900px;
+    margin: 100px auto 50px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.patient-name {
+    font-size: 32px;
+    color: #0f4c81;
+    margin-bottom: 40px;
+    font-weight: 600;
+}
+
+.diagnostic-section,
+.history-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    background: #f8fafc;
+    border-radius: 15px;
+}
+
+h2 {
+    color: #2d3748;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.file-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.file-input-wrapper label {
+    min-width: 80px;
+    color: #4a5568;
+    font-weight: 500;
+}
+
+.file-input-group {
+    flex: 1;
+    position: relative;
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px 15px;
+}
+
+input[type="file"] {
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-process {
+    background: #48bb78;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.3s;
+    align-self: flex-start;
+}
+
+.btn-process:hover {
+    background: #38a169;
+}
+
+.detections-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.detection-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.detection-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.detection-info {
+    padding: 15px;
+}
+
+.detection-date {
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.detection-result {
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.no-detections {
+    color: #718096;
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .patient-detail-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .file-input-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .btn-process {
+        width: 100%;
+    }
+}

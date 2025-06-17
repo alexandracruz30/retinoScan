@@ -38,11 +38,47 @@ class Paciente(models.Model):
         verbose_name = 'Paciente'
         verbose_name_plural = 'Pacientes'
 #Tabla para las imagenes de retina
+
 class ImagenRetina(models.Model):
+    GRADOS_RD = [
+        ('0', 'Sin Retinopatía'),
+        ('1', 'RD Leve'),
+        ('2', 'RD Moderada'),
+        ('3', 'RD Severa'),
+        ('4', 'RD Proliferativa'),
+    ]
+    
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, related_name='imagenes')
     imagen = models.ImageField(upload_to='retinas/')
-    resultado = models.CharField(max_length=100)
+    nombre_escaneo = models.CharField(max_length=200, default="Escaneo")
+    resultado = models.CharField(max_length=2, choices=GRADOS_RD)
+    confianza = models.FloatField(default=0.0)  # Porcentaje de confianza del modelo
     fecha = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.paciente.nombre} - {self.fecha.date()}"
+        return f"{self.paciente.nombre} - {self.nombre_escaneo} - {self.fecha.date()}"
+    
+    def get_severity_class(self):
+        """Retorna clase CSS según la severidad"""
+        severity_map = {
+            '0': 'normal',
+            '1': 'mild',
+            '2': 'moderate', 
+            '3': 'severe',
+            '4': 'proliferative'
+        }
+        return severity_map.get(self.resultado, 'normal')
+    
+    def get_severity_description(self):
+        """Retorna descripción detallada"""
+        descriptions = {
+            '0': 'No se detectaron signos de retinopatía diabética.',
+            '1': 'Presencia de microaneurismas únicamente.',
+            '2': 'Hemorragias y/o microaneurismas, con o sin exudados duros.',
+            '3': 'Hemorragias abundantes y microaneurismas en 4 cuadrantes.',
+            '4': 'Presencia de neovascularización y/o hemorragias vítreas.'
+        }
+        return descriptions.get(self.resultado, '')
+
+    class Meta:
+        ordering = ['-fecha']

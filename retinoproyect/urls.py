@@ -26,7 +26,10 @@ urlpatterns = [
     path('patient_register/', views.patient_register_view, name='patient_register'),
     path('patient_history/', views.patient_history_view, name='patient_history'),
     path('', views.home_view, name='home'),
-    
+    path('patient/<int:paciente_id>/', views.patient_detail_view, name='patient_detail'),
+    path('patient/<int:paciente_id>/upload_image/', views.upload_image_view, name='upload_image'),
+    path('result/<int:detection_id>/', views.result_view, name='result_view'),
+    path('delete/<int:detection_id>/', views.delete_detection_view, name='delete_detection'),
 ]
 
 

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/patient_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="patient-detail-container">
+    <h1 class="patient-name">Paciente: {{ patient.nombre }} {{ patient.apellido }}</h1>
+
+    <div class="diagnostic-section">
+        <h2>Realizar nuevo diagnóstico</h2>
+        <div class="upload-container">
+            <p>Subir imagen de retina para análisis con IA</p>
+            <a href="{% url 'upload_image' patient.id %}" class="btn-process">Subir imagen para diagnóstico</a>
+        </div>
+    </div>
+
+    <div class="history-section">
+        <h2>Historial de diagnósticos ({{ detections.count }} registro{{ detections.count|pluralize }})</h2>
+        {% if detections %}
+            <div class="detections-list">
+                {% for detection in detections %}
+                    <div class="detection-card">
+                        <img src="{{ detection.imagen.url }}" alt="Imagen de retina">
+                        <div class="detection-info">
+                            <h4>{{ detection.nombre_escaneo }}</h4>
+                            <p class="detection-date">{{ detection.fecha|date:"d/m/Y H:i" }}</p>
+                            <p class="detection-result severity-{{ detection.get_severity_class }}">{{ detection.get_resultado_display }}</p>
+                            <div class="card-actions">
+                                <a href="{% url 'result_view' detection.id %}" class="btn-view">Ver resultado</a>
+                                <a href="{% url 'delete_detection' detection.id %}" class="btn-delete" onclick="return confirm('¿Eliminar este registro?')">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-detections">No se han registrado diagnósticos aún. Realiza el primer análisis.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

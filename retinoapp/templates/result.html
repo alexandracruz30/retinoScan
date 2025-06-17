@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/result.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="result-container">
+    <h1>Resultado del Diagnóstico</h1>
+    
+    <div class="patient-info">
+        <h2>{{ detection.paciente.nombre }} {{ detection.paciente.apellido }}</h2>
+        <p>Fecha: {{ detection.fecha|date:"d/m/Y H:i" }}</p>
+        <p>Escaneo: {{ detection.nombre_escaneo }}</p>
+    </div>
+
+    <div class="result-content">
+        <div class="image-section">
+            <h3>Imagen Analizada</h3>
+            <img src="{{ detection.imagen.url }}" alt="Imagen de retina">
+        </div>
+
+        <div class="diagnosis-section">
+            <h3>Diagnóstico IA</h3>
+            <div class="result-box {{ detection.get_severity_class }}">
+                <h4>{{ detection.resultado }}</h4>
+                <p>{{ detection.get_severity_description }}</p>
+            </div>
+            
+            <div class="confidence-score">
+                <p>Confianza del modelo: {{ detection.confianza }}%</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions">
+        <a href="{% url 'patient_detail' detection.paciente.id %}" class="btn-primary">Volver al historial</a>
+        <a href="{% url 'delete_detection' detection.id %}" class="btn-danger" onclick="return confirm('¿Estás seguro de eliminar este registro?')">Eliminar registro</a>
+    </div>
+</div>
+{% endblock %}
