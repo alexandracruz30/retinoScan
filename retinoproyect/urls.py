@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from retinoapp import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +32,7 @@ urlpatterns = [
     path('patient/<int:paciente_id>/upload_image/', views.upload_image_view, name='upload_image'),
     path('result/<int:detection_id>/', views.result_view, name='result_view'),
     path('delete/<int:detection_id>/', views.delete_detection_view, name='delete_detection'),
-]
+    path('patient/<int:paciente_id>/edit/', views.patient_edit_view, name='patient_edit'),
+] + static('/retinas/', document_root='/Users/alexandracruz/Documents/Proyectos/retinoScan/retinas')
 
 

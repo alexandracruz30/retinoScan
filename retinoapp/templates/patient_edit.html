@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/patient_register.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="register-background">
+    <div class="register-container">
+        <h1 class="register-title">Editar Paciente</h1>
+        
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-section">
+                <h2 class="section-title">Datos Personales</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" value="{{ paciente.nombre }}" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" id="apellido" name="apellido" value="{{ paciente.apellido }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cedula">Cédula</label>
+                        <input type="text" id="cedula" name="cedula" value="{{ paciente.cedula }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fecha_nacimiento">Fecha de Nacimiento</label>
+                        <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" value="{{ paciente.fecha_nacimiento|date:'Y-m-d' }}" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h2 class="section-title">Datos Médicos</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="grupo_sanguineo">Grupo Sanguíneo</label>
+                        <select id="grupo_sanguineo" name="grupo_sanguineo" required>
+                            {% for valor, texto in paciente.GRUPOS_SANGUINEOS %}
+                            <option value="{{ valor }}" {% if paciente.grupo_sanguineo == valor %}selected{% endif %}>{{ texto }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="alergias">Alergias</label>
+                        <textarea id="alergias" name="alergias">{{ paciente.alergias }}</textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="enfermedades">Enfermedades Crónicas</label>
+                        <textarea id="enfermedades" name="enfermedades">{{ paciente.enfermedades_cronicas }}</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit">Guardar Cambios</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

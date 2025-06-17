@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/patient_history.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="history-container">
+    <div class="history-header">
+        <h1>Historial de Pacientes</h1>
+        <p class="total-patients">Total de pacientes registrados: {{ patients.count }}</p>
+    </div>
+
+    {% if patients %}
+    <div class="patients-list">
+        {% for patient in patients %}
+        <div class="patient-card">
+            <div class="patient-info">
+                <div class="patient-photo">
+                    {% if patient.foto %}
+                        <img src="{{ patient.foto.url }}" alt="Foto de {{ patient.nombre }}">
+                    {% else %}
+                        <div class="photo-placeholder">
+                            <span>{{ patient.nombre|make_list|first }}{{ patient.apellido|make_list|first }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="patient-details">
+                    <h2>{{ patient.nombre }} {{ patient.apellido }}</h2>
+                    <p class="patient-id">Cédula: {{ patient.cedula }}</p>
+                    <p class="register-date">Registrado: {{ patient.fecha_registro|date:"d/m/Y" }}</p>
+                </div>
+            </div>
+            <div class="patient-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Edad</span>
+                    <span class="stat-value">{{ patient.edad }} años</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Grupo Sanguíneo</span>
+                    <span class="stat-value">{{ patient.grupo_sanguineo }}</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Diagnósticos</span>
+                    <span class="stat-value">{{ patient.imagenretina_set.count }}</span>
+                </div>
+            </div>
+            <a href="{% url 'patient_detail' patient.id %}" class="btn-view-patient">
+                Ver Historial Completo
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="no-patients">
+        <p>No hay pacientes registrados aún.</p>
+        <a href="{% url 'patient_register' %}" class="btn-register">Registrar Nuevo Paciente</a>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

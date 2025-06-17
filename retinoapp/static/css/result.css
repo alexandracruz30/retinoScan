@@ -1,0 +1,133 @@
+.result-container {
+    max-width: 1000px;
+    margin: 100px auto 50px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 32px;
+    color: #0f4c81;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.patient-info {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.patient-info h2 {
+    color: #2d3748;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.patient-info p {
+    color: #4a5568;
+    margin: 5px 0;
+}
+
+.result-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.image-section, .diagnosis-section {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.image-section img {
+    width: 100%;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+h3 {
+    color: #2d3748;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.result-box {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.result-box h4 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.result-box.severity-normal { border-left: 4px solid #48bb78; }
+.result-box.severity-mild { border-left: 4px solid #ecc94b; }
+.result-box.severity-moderate { border-left: 4px solid #ed8936; }
+.result-box.severity-severe { border-left: 4px solid #e53e3e; }
+
+.confidence-score {
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    color: #4a5568;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.btn-primary, .btn-danger {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.btn-primary {
+    background: #3ec6e0;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #35b0c7;
+}
+
+.btn-danger {
+    background: #fc8181;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #f56565;
+}
+
+@media (max-width: 768px) {
+    .result-container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .result-content {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .btn-primary, .btn-danger {
+        text-align: center;
+    }
+}

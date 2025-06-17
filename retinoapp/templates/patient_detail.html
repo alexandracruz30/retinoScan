@@ -9,6 +9,10 @@
 <div class="patient-detail-container">
     <h1 class="patient-name">Paciente: {{ patient.nombre }} {{ patient.apellido }}</h1>
 
+    <div class="patient-actions">
+        <a href="{% url 'patient_edit' patient.id %}" class="btn-edit">Editar Información</a>
+    </div>
+
     <div class="diagnostic-section">
         <h2>Realizar nuevo diagnóstico</h2>
         <div class="upload-container">

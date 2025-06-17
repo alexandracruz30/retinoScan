@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from .models import Paciente, ImagenRetina
 import random  # Simular modelo IA, reemplaza con tu modelo real
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def login_view(request):
@@ -47,32 +48,39 @@ def register_view(request):
 
     return render(request, 'register.html')
 
+@login_required
 def dashboard_view(request):
     return render(request, 'dashboard.html')
 
 def home_view(request):
     return render(request, 'home.html')
 
+@login_required
 def patient_register_view(request):
     if request.method == 'POST':
-        nombre = request.POST.get('nombre')
-        apellido = request.POST.get('apellido')
-        cedula = request.POST.get('cedula')
-        fecha_nacimiento = request.POST.get('fecha_nacimiento')
-        foto = request.FILES.get('foto', None)  # Obtén la foto si existe
-
-        paciente = Paciente.objects.create(
-            nombre=nombre,
-            apellido=apellido,
-            cedula=cedula,
-            fecha_nacimiento=fecha_nacimiento,
-            foto=foto  # Pasa la foto o None si no hay
+        paciente = Paciente(
+            nombre=request.POST.get('nombre'),
+            apellido=request.POST.get('apellido'),
+            cedula=request.POST.get('cedula'),
+            fecha_nacimiento=request.POST.get('fecha_nacimiento'),
+            grupo_sanguineo=request.POST.get('grupo_sanguineo'),
+            alergias=request.POST.get('alergias'),
+            enfermedades_cronicas=request.POST.get('enfermedades'),
         )
+        
+        if 'foto' in request.FILES:
+            paciente.foto = request.FILES['foto']
+            
+        paciente.save()
         return redirect('patient_detail', paciente_id=paciente.id)
+        
     return render(request, 'patient_register.html')
 
+@login_required
 def patient_history_view(request):
-    return render(request, 'patient_history.html')
+    patients = Paciente.objects.all()
+    print(f"Número de pacientes encontrados: {patients.count()}")  # Debug
+    return render(request, 'patient_history.html', {'patients': patients})
 
 def patient_detail_view(request, paciente_id):
     paciente = Paciente.objects.get(id=paciente_id)
@@ -86,24 +94,39 @@ def upload_image_view(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     
     if request.method == 'POST':
-        imagen = request.FILES.get('imagen')
-        nombre_escaneo = request.POST.get('nombre_escaneo')
-        
-        if imagen and nombre_escaneo:
-            # AQUÍ VA TU MODELO DE DEEP LEARNING
-            # Por ahora simulo el resultado
-            resultado_ia = simular_diagnostico_ia(imagen)
+        if 'imagen' in request.FILES:
+            imagen_file = request.FILES['imagen']
+            nombre_escaneo = request.POST.get('nombre_escaneo', 'Escaneo')
             
+            # Guardar la imagen en la carpeta retinas
+            import os
+            import uuid
+            from django.core.files.storage import default_storage
+            
+            # Generar nombre único para la imagen
+            file_extension = os.path.splitext(imagen_file.name)[1]
+            unique_filename = f"{uuid.uuid4()}{file_extension}"
+            
+            # Guardar en la carpeta retinas
+            file_path = os.path.join('/Users/alexandracruz/Documents/Proyectos/retinoScan/retinas', unique_filename)
+            
+            with open(file_path, 'wb+') as destination:
+                for chunk in imagen_file.chunks():
+                    destination.write(chunk)
+            
+            # Simular análisis de IA
+            resultado = "Retinopatía diabética leve detectada"
+            
+            # Crear registro en la base de datos
             detection = ImagenRetina.objects.create(
                 paciente=paciente,
-                imagen=imagen,
-                nombre_escaneo=nombre_escaneo,
-                resultado=resultado_ia['grado'],
-                confianza=resultado_ia['confianza']
+                imagen=unique_filename,  # Solo el nombre del archivo
+                resultado=resultado,
+                nombre_escaneo=nombre_escaneo
             )
             
             return redirect('result_view', detection_id=detection.id)
-    
+        
     return render(request, 'upload_image.html', {'patient': paciente})
 
 def simular_diagnostico_ia(imagen):
@@ -131,3 +154,24 @@ def delete_detection_view(request, detection_id):
         return redirect('patient_detail', paciente_id=paciente_id)
     
     return render(request, 'confirm_delete.html', {'detection': detection})
+
+@login_required
+def patient_edit_view(request, paciente_id):
+    paciente = get_object_or_404(Paciente, id=paciente_id)
+    
+    if request.method == 'POST':
+        paciente.nombre = request.POST.get('nombre')
+        paciente.apellido = request.POST.get('apellido')
+        paciente.cedula = request.POST.get('cedula')
+        paciente.fecha_nacimiento = request.POST.get('fecha_nacimiento')
+        paciente.grupo_sanguineo = request.POST.get('grupo_sanguineo')
+        paciente.alergias = request.POST.get('alergias')
+        paciente.enfermedades_cronicas = request.POST.get('enfermedades')
+        
+        if 'foto' in request.FILES:
+            paciente.foto = request.FILES['foto']
+            
+        paciente.save()
+        return redirect('patient_detail', paciente_id=paciente.id)
+        
+    return render(request, 'patient_edit.html', {'paciente': paciente})

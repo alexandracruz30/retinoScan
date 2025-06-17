@@ -1,0 +1,98 @@
+.upload-container {
+    max-width: 800px;
+    margin: 100px auto 50px;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 32px;
+    color: #0f4c81;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.patient-info {
+    color: #4a5568;
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.upload-form {
+    background: #f8fafc;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.image-upload-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.image-upload-section label {
+    color: #2d3748;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.image-upload-section input[type="file"] {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+}
+
+.image-upload-section input[type="text"] {
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+}
+
+.btn-analyze {
+    background: #3ec6e0;
+    color: white;
+    padding: 14px 28px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s;
+}
+
+.btn-analyze:hover {
+    background: #35b0c7;
+}
+
+.back-link {
+    margin-top: 20px;
+}
+
+.back-link a {
+    color: #0f4c81;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .upload-container {
+        margin: 20px;
+        padding: 20px;
+    }
+}
