@@ -33,6 +33,8 @@ urlpatterns = [
     path('result/<int:detection_id>/', views.result_view, name='result_view'),
     path('delete/<int:detection_id>/', views.delete_detection_view, name='delete_detection'),
     path('patient/<int:paciente_id>/edit/', views.patient_edit_view, name='patient_edit'),
-] + static('/retinas/', document_root='/Users/alexandracruz/Documents/Proyectos/retinoScan/retinas')
-
+] 
+# Agregar esta línea para servir archivos de medios en desarrollo
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

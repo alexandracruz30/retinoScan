@@ -5,6 +5,7 @@ from django.contrib import messages
 from .models import Paciente, ImagenRetina
 import random  # Simular modelo IA, reemplaza con tu modelo real
 from django.contrib.auth.decorators import login_required
+from .ai_model import analizar_con_modelo_ia
 
 # Create your views here.
 def login_view(request):
@@ -94,39 +95,23 @@ def upload_image_view(request, paciente_id):
     paciente = get_object_or_404(Paciente, id=paciente_id)
     
     if request.method == 'POST':
-        if 'imagen' in request.FILES:
-            imagen_file = request.FILES['imagen']
-            nombre_escaneo = request.POST.get('nombre_escaneo', 'Escaneo')
+        imagen = request.FILES.get('imagen')
+        nombre_escaneo = request.POST.get('nombre_escaneo', 'Escaneo')
+        
+        if imagen and nombre_escaneo:
+            # AQUÍ USAS TU MODELO REAL
+            resultado_ia = analizar_con_modelo_ia(imagen)
             
-            # Guardar la imagen en la carpeta retinas
-            import os
-            import uuid
-            from django.core.files.storage import default_storage
-            
-            # Generar nombre único para la imagen
-            file_extension = os.path.splitext(imagen_file.name)[1]
-            unique_filename = f"{uuid.uuid4()}{file_extension}"
-            
-            # Guardar en la carpeta retinas
-            file_path = os.path.join('/Users/alexandracruz/Documents/Proyectos/retinoScan/retinas', unique_filename)
-            
-            with open(file_path, 'wb+') as destination:
-                for chunk in imagen_file.chunks():
-                    destination.write(chunk)
-            
-            # Simular análisis de IA
-            resultado = "Retinopatía diabética leve detectada"
-            
-            # Crear registro en la base de datos
             detection = ImagenRetina.objects.create(
                 paciente=paciente,
-                imagen=unique_filename,  # Solo el nombre del archivo
-                resultado=resultado,
-                nombre_escaneo=nombre_escaneo
+                imagen=imagen,
+                nombre_escaneo=nombre_escaneo,
+                resultado=resultado_ia['grado'],
+                confianza=resultado_ia['confianza']
             )
             
             return redirect('result_view', detection_id=detection.id)
-        
+    
     return render(request, 'upload_image.html', {'patient': paciente})
 
 def simular_diagnostico_ia(imagen):

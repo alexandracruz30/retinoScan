@@ -126,7 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración de archivos media
 MEDIA_URL = '/media/'
-MEDIA_ROOT = '/Users/alexandracruz/Documents/Proyectos/retinoScan/'
-
+MEDIA_ROOT = BASE_DIR / 'media'
 # Para desarrollo
 DEBUG = True

@@ -24,7 +24,7 @@
         <div class="diagnosis-section">
             <h3>Diagnóstico IA</h3>
             <div class="result-box {{ detection.get_severity_class }}">
-                <h4>{{ detection.resultado }}</h4>
+                <h4>{{ detection.get_resultado_display }}</h4>
                 <p>{{ detection.get_severity_description }}</p>
             </div>
             
